@@ -25,18 +25,38 @@ refs.input.addEventListener('input', debounce(() => {
       if (countries.length > 10) {
         Notify.info('Too many matches found. Please enter a more specific name.');
         return;
+      } else if (countries.length >= 2 && countries.length <= 10) {
+        console.log('ot 2 do 10')
+        renderFewCountryList(countries);
+        return;
+      } else {
+      renderOneCountryList(countries);
       }
-     renderUserList(countries) 
     })
     .catch(error => console.log(error));
 },DEBOUNCE_DELAY));
 
 
-function renderUserList(countries) {
+function renderFewCountryList(countries) {
   const markup = countries
     .map((country) => {
-      return `<li class="country-list__item">
-          <p><b>Country</b>: ${country.name.official}</p>
+      return `<li class="country-list__item list">
+          <img class='country-list__img' src="${country.flags.svg}" alt="flag of Country" width="30px">
+          <p>${country.name.common}</p>
+        </li>`;
+    })
+      .join("");
+    refs.list.innerHTML = markup;
+}
+
+function renderOneCountryList(countries) {
+  const markup = countries
+    .map((country) => {
+      return `<li class="country-list__it list">
+          <div class="country-list__container">
+          <img src="${country.flags.svg}" alt="flag of Country" width="30px">
+          <p>${country.name.official}</p>
+          </div>
           <p><b>Capital</b>: ${country.capital}</p>
           <p><b>Population</b>: ${country.population}</p>
         </li>`;
