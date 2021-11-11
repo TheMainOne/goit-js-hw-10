@@ -3,6 +3,6 @@ parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcel
 },{}],"SvwL":[function(require,module,exports) {
 "use strict";function e(e){return fetch(`\nhttps://restcountries.com/v3.1/name/${e}`).then(e=>{if(!e.ok)throw new Error(e.status);return e.json()})}Object.defineProperty(exports,"__esModule",{value:!0}),exports.fetchCountries=e;
 },{}],"Focm":[function(require,module,exports) {
-"use strict";require("./css/styles.css");var e=require("./fetchCountries");const t=300,c={input:document.querySelector("#search-box"),list:document.querySelector("country-list"),container:document.querySelector("country-list")};c.input.addEventListener("input",()=>{const t=c.input.value;console.log(t),(0,e.fetchCountries)(t).then(e=>renderUserList(e)).catch(e=>console.log(e))}),console.log(fetch("https://restcountries.com/v3.1/all"));
+"use strict";require("./css/styles.css");var e=require("./fetchCountries");const n=300,t={input:document.querySelector("#search-box"),list:document.querySelector("country-list"),container:document.querySelector("country-list")};function o(e){const n=e.map(e=>`<li>\n          <p><b>Name</b>: ${e.name}</p>\n          <p><b>Email</b>: ${e.email}</p>\n          <p><b>Company</b>: ${e.company.name}</p>\n        </li>`).join("");userList.innerHTML=n}t.input.addEventListener("input",()=>{const n=t.input.value;console.log(n),(0,e.fetchCountries)(n).then(e=>o(e)).catch(e=>console.log(e))});
 },{"./css/styles.css":"krre","./fetchCountries":"SvwL"}]},{},["Focm"], null)
-//# sourceMappingURL=/goit-js-hw-10/src.8abfbb39.js.map
+//# sourceMappingURL=/goit-js-hw-10/src.56161bb2.js.map
