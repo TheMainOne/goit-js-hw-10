@@ -7,7 +7,7 @@ const DEBOUNCE_DELAY = 300;
 const refs = {
   input: document.querySelector('#search-box'),
   list: document.querySelector('.country-list'),
-  container: document.querySelector('.country-list'),
+  container: document.querySelector('.country-info'),
 };
 
 refs.input.addEventListener('input', debounce(() => {
@@ -30,6 +30,7 @@ refs.input.addEventListener('input', debounce(() => {
         renderFewCountryList(countries);
         return;
       } else {
+      refs.list.innerHTML = '';
       renderOneCountryList(countries);
       }
     })
@@ -52,17 +53,19 @@ function renderFewCountryList(countries) {
 function renderOneCountryList(countries) {
   const markup = countries
     .map((country) => {
-      return `<li class="country-list__it list">
+      console.log(country);
+      return `
           <div class="country-list__container">
           <img src="${country.flags.svg}" alt="flag of Country" width="30px">
           <p>${country.name.official}</p>
           </div>
           <p><b>Capital</b>: ${country.capital}</p>
           <p><b>Population</b>: ${country.population}</p>
+
+          <p><b>Languages</b>: ${country.languages}</p>
         </li>`;
     })
       .join("");
-    refs.list.innerHTML = markup;
+    refs.container.innerHTML = markup;
 }
-
 
