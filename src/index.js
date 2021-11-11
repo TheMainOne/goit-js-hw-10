@@ -17,25 +17,18 @@ refs.input.addEventListener('input', () => {
     .catch(error => console.log(error));
 });
 
-console.log(fetch('https://restcountries.com/v3.1/all'));
 
-// fetchUsersBtn.addEventListener("click", () => {
-//   fetchUsers()
-//     .then((users) => renderUserList(users))
-//     .catch((error) => console.log(error));
-// });
-
-// function renderUserList(users) {
-//   const markup = users
-//     .map((user) => {
-//       return `<li>
-//           <p><b>Name</b>: ${user.name}</p>
-//           <p><b>Email</b>: ${user.email}</p>
-//           <p><b>Company</b>: ${user.company.name}</p>
-//         </li>`;
-//     })
-//     .join("");
-//   userList.innerHTML = markup;
-// }
+function renderUserList(users) {
+  const markup = users
+    .map((user) => {
+      return `<li>
+          <p><b>Name</b>: ${user.name}</p>
+          <p><b>Email</b>: ${user.email}</p>
+          <p><b>Company</b>: ${user.company.name}</p>
+        </li>`;
+    })
+    .join("");
+  userList.innerHTML = markup;
+}
 
 // console.log(refs.input);
