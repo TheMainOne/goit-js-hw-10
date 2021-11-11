@@ -1,5 +1,6 @@
 import './css/styles.css';
 import { fetchCountries } from './fetchCountries';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 var debounce = require('lodash.debounce');
 const DEBOUNCE_DELAY = 300;
@@ -19,11 +20,16 @@ refs.input.addEventListener('input', debounce(() => {
   }
 
   fetchCountries(valueOfInput)
-    .then(countries => renderUserList(countries))
+    .then(countries => {
+
+      if (countries.length > 10) {
+        Notify.info('Too many matches found. Please enter a more specific name.');
+        return;
+      }
+     renderUserList(countries) 
+    })
     .catch(error => console.log(error));
 },DEBOUNCE_DELAY));
-
-// Если пользователь полностью очищает поле поиска, то HTTP-запрос не выполняется, а разметка списка стран или информации о стране пропадает.
 
 
 function renderUserList(countries) {
@@ -38,4 +44,5 @@ function renderUserList(countries) {
       .join("");
     refs.list.innerHTML = markup;
 }
+
 
