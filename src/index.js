@@ -14,7 +14,6 @@ const refs = {
 
 refs.input.addEventListener('input', debounce(() => {
   const valueOfInput = refs.input.value.trim();
-  console.log(valueOfInput)
 
   if (valueOfInput === '') {
     refs.list.innerHTML = '';
@@ -29,6 +28,7 @@ refs.input.addEventListener('input', debounce(() => {
         Notify.info('Too many matches found. Please enter a more specific name.');
         return;
       } else if (countries.length >= 2 && countries.length <= 10) {
+        refs.container.innerHTML = '';
         renderFewCountryList(countries);
         return;
       } else {
