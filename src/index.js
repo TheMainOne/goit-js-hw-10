@@ -30,10 +30,11 @@ refs.input.addEventListener('input', debounce(() => {
         return;
       } else {
       refs.list.innerHTML = '';
-      renderOneCountryList(countries);
+        renderOneCountryList(countries);
+        
       }
     })
-    .catch(error => Notify.failure('Oops, there is no country with that name'));
+    .catch(() => Notify.failure('Oops, there is no country with that name'));
 },DEBOUNCE_DELAY));
 
 
