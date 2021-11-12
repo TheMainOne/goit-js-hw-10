@@ -10,12 +10,15 @@ const refs = {
   container: document.querySelector('.country-info'),
 };
 
+// Если пользователь полностью очищает поле поиска, то HTTP-запрос не выолняется, а разметка списка стран или информации о стране пропадает.
 
 refs.input.addEventListener('input', debounce(() => {
   const valueOfInput = refs.input.value.trim();
+  console.log(valueOfInput)
 
   if (valueOfInput === '') {
     refs.list.innerHTML = '';
+    refs.container.innerHTML = '';
     return;
   }
 
