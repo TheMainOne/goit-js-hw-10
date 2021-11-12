@@ -12,7 +12,6 @@ const refs = {
 
 refs.input.addEventListener('input', debounce(() => {
   const valueOfInput = refs.input.value.trim();
-  console.log(valueOfInput);
 
   if (valueOfInput === '') {
     refs.list.innerHTML = '';
@@ -21,12 +20,11 @@ refs.input.addEventListener('input', debounce(() => {
 
   fetchCountries(valueOfInput)
     .then(countries => {
-
+      
       if (countries.length > 10) {
         Notify.info('Too many matches found. Please enter a more specific name.');
         return;
       } else if (countries.length >= 2 && countries.length <= 10) {
-        console.log('ot 2 do 10')
         renderFewCountryList(countries);
         return;
       } else {
@@ -53,7 +51,9 @@ function renderFewCountryList(countries) {
 function renderOneCountryList(countries) {
   const markup = countries
     .map((country) => {
-      console.log(country);
+      const countryValues = Object.values(country);
+      const languagesValues = Object.values(countryValues[3]);
+
       return `
           <div class="country-list__container">
           <img src="${country.flags.svg}" alt="flag of Country" width="30px">
@@ -62,7 +62,7 @@ function renderOneCountryList(countries) {
           <p><b>Capital</b>: ${country.capital}</p>
           <p><b>Population</b>: ${country.population}</p>
 
-          <p><b>Languages</b>: ${country.languages}</p>
+          <p><b>Languages</b>: ${languagesValues}</p>
         </li>`;
     })
       .join("");
