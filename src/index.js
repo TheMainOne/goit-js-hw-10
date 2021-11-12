@@ -10,6 +10,7 @@ const refs = {
   container: document.querySelector('.country-info'),
 };
 
+
 refs.input.addEventListener('input', debounce(() => {
   const valueOfInput = refs.input.value.trim();
 
@@ -20,7 +21,7 @@ refs.input.addEventListener('input', debounce(() => {
 
   fetchCountries(valueOfInput)
     .then(countries => {
-      
+
       if (countries.length > 10) {
         Notify.info('Too many matches found. Please enter a more specific name.');
         return;
@@ -32,7 +33,7 @@ refs.input.addEventListener('input', debounce(() => {
       renderOneCountryList(countries);
       }
     })
-    .catch(error => console.log(error));
+    .catch(error => Notify.failure('Oops, there is no country with that name'));
 },DEBOUNCE_DELAY));
 
 
