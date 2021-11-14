@@ -12,8 +12,8 @@ const refs = {
 
 refs.input.addEventListener(
   'input',
-  debounce(() => {
-    const valueOfInput = refs.input.value.trim();
+  debounce(event => {
+    const valueOfInput = event.target.value.trim();
 
     if (valueOfInput === '') {
       refs.list.innerHTML = '';
